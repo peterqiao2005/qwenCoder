@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日式卡通A-RPG游戏框架</title>
+    <link rel="stylesheet" href="src/ui/styles.css">
+</head>
+<body>
+    <!-- 游戏画布 -->
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        
+        <!-- UI层 -->
+        <div id="ui-layer">
+            <!-- 主菜单 -->
+            <div id="main-menu" class="ui-panel">
+                <h1>樱花剑士</h1>
+                <button id="btn-start">开始游戏</button>
+                <button id="btn-editor">脚本编辑器</button>
+                <button id="btn-settings">设置</button>
+            </div>
+            
+            <!-- 游戏内UI -->
+            <div id="game-ui" class="ui-panel hidden">
+                <div id="hud">
+                    <div id="player-stats">
+                        <span id="hp-display">HP: 100/100</span>
+                        <span id="level-display">LV: 1</span>
+                        <span id="exp-display">EXP: 0/100</span>
+                    </div>
+                    <div id="minimap"></div>
+                </div>
+                <div id="dialog-box" class="hidden">
+                    <div id="dialog-portrait"></div>
+                    <div id="dialog-text"></div>
+                    <button id="dialog-next">下一页</button>
+                </div>
+            </div>
+            
+            <!-- 脚本编辑器 -->
+            <div id="script-editor" class="ui-panel hidden">
+                <h2>脚本编辑器</h2>
+                <div id="editor-container">
+                    <div id="npc-list">
+                        <h3>NPC列表</h3>
+                        <ul id="npc-list-items"></ul>
+                        <button id="btn-add-npc">添加NPC</button>
+                    </div>
+                    <div id="editor-form">
+                        <h3>编辑NPC</h3>
+                        <form id="npc-form">
+                            <label>名称：<input type="text" id="npc-name"></label>
+                            <label>性别：
+                                <select id="npc-gender">
+                                    <option value="female">女性</option>
+                                    <option value="male">男性</option>
+                                </select>
+                            </label>
+                            <label>年龄组：
+                                <select id="npc-age-group">
+                                    <option value="young">少女</option>
+                                    <option value="young-adult">年轻女性</option>
+                                    <option value="adult">成年</option>
+                                    <option value="elder">长者</option>
+                                </select>
+                            </label>
+                            <label>角色类型：
+                                <select id="npc-role">
+                                    <option value="quest-giver">任务发布者</option>
+                                    <option value="merchant">商人</option>
+                                    <option value="companion">同伴</option>
+                                    <option value="villager">村民</option>
+                                </select>
+                            </label>
+                            <label>对话内容：</label>
+                            <textarea id="npc-dialogue" rows="6"></textarea>
+                            <label>相关任务：</label>
+                            <textarea id="npc-quests" rows="4"></textarea>
+                            <div id="form-actions">
+                                <button type="submit" id="btn-save-npc">保存</button>
+                                <button type="button" id="btn-delete-npc">删除</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <button id="btn-close-editor">关闭编辑器</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 游戏核心脚本 -->
+    <script src="src/core/game.js"></script>
+    <script src="src/core/renderer.js"></script>
+    <script src="src/core/input.js"></script>
+    <script src="src/entities/entity.js"></script>
+    <script src="src/entities/player.js"></script>
+    <script src="src/entities/npc.js"></script>
+    <script src="src/systems/dialogue.js"></script>
+    <script src="src/systems/quest.js"></script>
+    <script src="src/systems/combat.js"></script>
+    <script src="src/ui/ui-manager.js"></script>
+    <script src="src/ui/script-editor.js"></script>
+    <script src="src/data/npc-data.js"></script>
+    <script src="scripts/demo-script.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
