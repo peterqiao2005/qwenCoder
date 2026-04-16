@@ -147,9 +147,12 @@ class DialogueSystem {
             return npc.portrait;
         }
         
-        // 尝试通过名称匹配
+        // 尝试通过名称匹配（确保 id 是字符串）
+        const npcId = String(npc.id || '');
+        const npcName = String(npc.name || '');
+        
         for (const [key, value] of Object.entries(this.portraitImages)) {
-            if (npc.id.toLowerCase().includes(key) || npc.name.toLowerCase().includes(key)) {
+            if (npcId.toLowerCase().includes(key) || npcName.toLowerCase().includes(key)) {
                 return value;
             }
         }

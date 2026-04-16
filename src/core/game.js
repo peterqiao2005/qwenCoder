@@ -75,28 +75,38 @@ class Game {
     }
     
     generateNPCs() {
-        // Demo: 生成10个NPC，8个女性，2个男性
-        const npcConfigs = [
-            { name: '樱子', gender: 'female', ageGroup: 'young', role: 'quest-giver' },
-            { name: '美咲', gender: 'female', ageGroup: 'young-adult', role: 'merchant' },
-            { name: '千夏', gender: 'female', ageGroup: 'young', role: 'villager' },
-            { name: '由依', gender: 'female', ageGroup: 'young-adult', role: 'companion' },
-            { name: '诗织', gender: 'female', ageGroup: 'young', role: 'villager' },
-            { name: '绫乃', gender: 'female', ageGroup: 'young-adult', role: 'quest-giver' },
-            { name: '优奈', gender: 'female', ageGroup: 'young', role: 'merchant' },
-            { name: '遥', gender: 'female', ageGroup: 'young-adult', role: 'villager' },
-            { name: '健太', gender: 'male', ageGroup: 'adult', role: 'merchant' },
-            { name: '大辅', gender: 'male', ageGroup: 'adult', role: 'villager' }
-        ];
-        
-        npcConfigs.forEach((config, index) => {
-            const x = 100 + Math.random() * (this.width - 200);
-            const y = 100 + Math.random() * (this.height - 200);
-            const npc = new NPC(x, y, config);
-            this.npcs.push(npc);
-        });
-        
-        console.log(`生成了${this.npcs.length}个NPC`);
+        // 使用 NPCData 中的数据生成 NPC（80% 女性，20% 男性）
+        if (this.npcData && this.npcData.length > 0) {
+            this.npcData.forEach((config) => {
+                const x = 100 + Math.random() * (this.width - 200);
+                const y = 100 + Math.random() * (this.height - 200);
+                const npc = new NPC(x, y, config);
+                this.npcs.push(npc);
+            });
+        } else {
+            // 后备方案：如果没有 NPCData，使用默认配置
+            const npcConfigs = [
+                { name: '樱子', gender: 'female', ageGroup: 'young', role: 'quest-giver' },
+                { name: '美咲', gender: 'female', ageGroup: 'young-adult', role: 'merchant' },
+                { name: '千夏', gender: 'female', ageGroup: 'young', role: 'villager' },
+                { name: '由依', gender: 'female', ageGroup: 'young-adult', role: 'companion' },
+                { name: '诗织', gender: 'female', ageGroup: 'young', role: 'villager' },
+                { name: '绫乃', gender: 'female', ageGroup: 'young-adult', role: 'quest-giver' },
+                { name: '优奈', gender: 'female', ageGroup: 'young', role: 'merchant' },
+                { name: '遥', gender: 'female', ageGroup: 'young-adult', role: 'villager' },
+                { name: '健太', gender: 'male', ageGroup: 'adult', role: 'merchant' },
+                { name: '大辅', gender: 'male', ageGroup: 'adult', role: 'villager' }
+            ];
+
+            npcConfigs.forEach((config) => {
+                const x = 100 + Math.random() * (this.width - 200);
+                const y = 100 + Math.random() * (this.height - 200);
+                const npc = new NPC(x, y, config);
+                this.npcs.push(npc);
+            });
+        }
+
+        console.log(`生成了${this.npcs.length}个 NPC`);
     }
     
     gameLoop(timestamp) {
