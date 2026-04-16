@@ -6,11 +6,12 @@
 
 const NPCData = [
     {
-        id: 1,
+        id: 'sakura_001',
         name: '樱子',
         gender: 'female',
         ageGroup: 'young',
         role: 'quest-giver',
+        portrait: 'assets/images/portrait-female-1.svg',
         dialogue: [
             '你好呀！我是樱子。',
             '最近村子里发生了一些奇怪的事情...',
@@ -29,11 +30,12 @@ const NPCData = [
         ]
     },
     {
-        id: 2,
+        id: 'yuki_002',
         name: '美咲',
         gender: 'female',
         ageGroup: 'young-adult',
         role: 'merchant',
+        portrait: 'assets/images/portrait-female-2.svg',
         dialogue: [
             '欢迎光临！我是美咲，这家店的店主。',
             '看看有什么需要的吗？',
@@ -42,11 +44,12 @@ const NPCData = [
         quests: []
     },
     {
-        id: 3,
+        id: 'luna_003',
         name: '千夏',
         gender: 'female',
         ageGroup: 'young',
         role: 'villager',
+        portrait: 'assets/images/portrait-female-3.svg',
         dialogue: [
             '啊，你好！',
             '今天天气真好，适合出去冒险呢。',
@@ -55,11 +58,12 @@ const NPCData = [
         quests: []
     },
     {
-        id: 4,
+        id: 'akane_004',
         name: '由依',
         gender: 'female',
         ageGroup: 'young-adult',
         role: 'companion',
+        portrait: 'assets/images/portrait-female-4.svg',
         dialogue: [
             '你好！我叫由依。',
             '一个人旅行好寂寞...',
@@ -68,11 +72,12 @@ const NPCData = [
         quests: []
     },
     {
-        id: 5,
+        id: 'sakura_005',
         name: '诗织',
         gender: 'female',
         ageGroup: 'young',
         role: 'villager',
+        portrait: 'assets/images/portrait-female-1.svg',
         dialogue: [
             '你好呀~',
             '你是新来的冒险者吧？',
@@ -81,11 +86,12 @@ const NPCData = [
         quests: []
     },
     {
-        id: 6,
+        id: 'yuki_006',
         name: '绫乃',
         gender: 'female',
         ageGroup: 'young-adult',
         role: 'quest-giver',
+        portrait: 'assets/images/portrait-female-2.svg',
         dialogue: [
             '你好，冒险者。',
             '我有个重要的任务要委托给你。',
@@ -104,11 +110,12 @@ const NPCData = [
         ]
     },
     {
-        id: 7,
+        id: 'luna_007',
         name: '优奈',
         gender: 'female',
         ageGroup: 'young',
         role: 'merchant',
+        portrait: 'assets/images/portrait-female-3.svg',
         dialogue: [
             '嗨！我是优奈~',
             '我的商品价格可是全大陆最优惠的哦！',
@@ -117,11 +124,12 @@ const NPCData = [
         quests: []
     },
     {
-        id: 8,
+        id: 'akane_008',
         name: '遥',
         gender: 'female',
         ageGroup: 'young-adult',
         role: 'villager',
+        portrait: 'assets/images/portrait-female-4.svg',
         dialogue: [
             '你好。',
             '最近的日子过得很平静呢。',
@@ -130,11 +138,12 @@ const NPCData = [
         quests: []
     },
     {
-        id: 9,
+        id: 'takeshi_009',
         name: '健太',
         gender: 'male',
         ageGroup: 'adult',
         role: 'merchant',
+        portrait: 'assets/images/portrait-male-1.svg',
         dialogue: [
             '哟，冒险者！',
             '需要武器或者防具吗？',
@@ -143,11 +152,12 @@ const NPCData = [
         quests: []
     },
     {
-        id: 10,
+        id: 'kenji_010',
         name: '大辅',
         gender: 'male',
         ageGroup: 'adult',
         role: 'villager',
+        portrait: 'assets/images/portrait-male-2.svg',
         dialogue: [
             '你好啊。',
             '我是个普通的村民，没什么特别的故事。',

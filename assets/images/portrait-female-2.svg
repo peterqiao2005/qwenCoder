@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="250" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景 -->
+  <rect width="200" height="250" fill="#E4F9FF"/>
+  
+  <!-- 头发 - 后层 -->
+  <ellipse cx="100" cy="90" rx="75" ry="70" fill="#FFD700"/>
+  
+  <!-- 身体 -->
+  <path d="M60 250 L60 180 Q60 160 80 155 L120 155 Q140 160 140 180 L140 250 Z" fill="#FFE0BD"/>
+  
+  <!-- 衣服 -->
+  <path d="M65 250 L65 175 Q65 160 85 158 L115 158 Q135 160 135 175 L135 250 Z" fill="#87CEEB"/>
+  <path d="M85 158 L100 190 L115 158" fill="#FFB6C1"/>
+  
+  <!-- 脖子 -->
+  <rect x="90" y="140" width="20" height="20" fill="#FFE0BD"/>
+  
+  <!-- 脸 -->
+  <ellipse cx="100" cy="110" rx="55" ry="60" fill="#FFE0BD"/>
+  
+  <!-- 刘海 -->
+  <path d="M45 90 Q50 60 100 55 Q150 60 155 90 Q150 70 100 65 Q50 70 45 90" fill="#FFD700"/>
+  
+  <!-- 眼睛 -->
+  <ellipse cx="75" cy="105" rx="12" ry="15" fill="white"/>
+  <ellipse cx="125" cy="105" rx="12" ry="15" fill="white"/>
+  <circle cx="78" cy="108" r="8" fill="#2E8B57"/>
+  <circle cx="128" cy="108" r="8" fill="#2E8B57"/>
+  <circle cx="80" cy="105" r="3" fill="white"/>
+  <circle cx="130" cy="105" r="3" fill="white"/>
+  
+  <!-- 眉毛 -->
+  <path d="M65 90 Q75 85 85 90" stroke="#FFD700" stroke-width="2" fill="none"/>
+  <path d="M115 90 Q125 85 135 90" stroke="#FFD700" stroke-width="2" fill="none"/>
+  
+  <!-- 腮红 -->
+  <ellipse cx="65" cy="125" rx="10" ry="6" fill="#FFB6C1" opacity="0.6"/>
+  <ellipse cx="135" cy="125" rx="10" ry="6" fill="#FFB6C1" opacity="0.6"/>
+  
+  <!-- 嘴巴 -->
+  <path d="M90 135 Q100 142 110 135" stroke="#FF69B4" stroke-width="2" fill="none"/>
+  
+  <!-- 鼻子 -->
+  <circle cx="100" cy="120" r="2" fill="#FFB6C1"/>
+  
+  <!-- 头发 - 侧边 -->
+  <path d="M45 90 Q35 120 40 150" stroke="#FFD700" stroke-width="12" fill="none" stroke-linecap="round"/>
+  <path d="M155 90 Q165 120 160 150" stroke="#FFD700" stroke-width="12" fill="none" stroke-linecap="round"/>
+  
+  <!-- 发带 -->
+  <path d="M70 70 L130 70 L130 80 L70 80 Z" fill="#FF69B4"/>
+  <path d="M70 75 L60 65 L70 55 L80 65 Z" fill="#FF69B4"/>
+  <path d="M130 75 L140 65 L130 55 L120 65 Z" fill="#FF69B4"/>
+</svg>

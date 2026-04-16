@@ -12,6 +12,16 @@ class DialogueSystem {
         this.typewriterTimer = 0;
         this.displayedText = '';
         this.isTyping = false;
+        
+        // 肖像图片映射
+        this.portraitImages = {
+            'sakura': 'assets/images/portrait-female-1.svg',
+            'yuki': 'assets/images/portrait-female-2.svg',
+            'luna': 'assets/images/portrait-female-3.svg',
+            'akane': 'assets/images/portrait-female-4.svg',
+            'takeshi': 'assets/images/portrait-male-1.svg',
+            'kenji': 'assets/images/portrait-male-2.svg'
+        };
     }
     
     startDialogue(npc) {
@@ -104,22 +114,60 @@ class DialogueSystem {
         const dialogBox = document.getElementById('dialog-box');
         const dialogPortrait = document.getElementById('dialog-portrait');
         const dialogText = document.getElementById('dialog-text');
+        const dialogName = document.getElementById('dialog-name');
         
         if (dialogBox && this.currentNPC) {
-            // 设置肖像颜色（根据性别）
-            dialogPortrait.style.background = this.currentNPC.gender === 'female' 
-                ? 'linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%)'
-                : 'linear-gradient(135deg, #87CEFA 0%, #4682B4 100%)';
+            // 设置肖像图片
+            if (dialogPortrait) {
+                const portraitSrc = this.getPortraitForNPC(this.currentNPC);
+                if (portraitSrc) {
+                    dialogPortrait.innerHTML = `<img src="${portraitSrc}" alt="${this.currentNPC.name}" style="width:100%;height:100%;object-fit:cover;border-radius:12px;">`;
+                } else {
+                    // 如果没有图片，使用渐变色背景
+                    dialogPortrait.style.background = this.currentNPC.gender === 'female' 
+                        ? 'linear-gradient(135deg, #FFB6C1 0%, #FF69B4 100%)'
+                        : 'linear-gradient(135deg, #87CEFA 0%, #4682B4 100%)';
+                    dialogPortrait.innerHTML = '';
+                }
+            }
+            
+            // 设置角色名称
+            if (dialogName) {
+                dialogName.textContent = this.currentNPC.name;
+            }
             
             dialogBox.classList.remove('hidden');
             dialogText.textContent = '...';
         }
     }
     
+    getPortraitForNPC(npc) {
+        // 根据 NPC ID 或名称查找肖像
+        if (npc.portrait) {
+            return npc.portrait;
+        }
+        
+        // 尝试通过名称匹配
+        for (const [key, value] of Object.entries(this.portraitImages)) {
+            if (npc.id.toLowerCase().includes(key) || npc.name.toLowerCase().includes(key)) {
+                return value;
+            }
+        }
+        
+        // 默认返回基于性别的肖像
+        if (npc.gender === 'female') {
+            const femalePortraits = ['assets/images/portrait-female-1.svg', 'assets/images/portrait-female-2.svg', 'assets/images/portrait-female-3.svg', 'assets/images/portrait-female-4.svg'];
+            return femalePortraits[Math.floor(Math.random() * femalePortraits.length)];
+        } else {
+            const malePortraits = ['assets/images/portrait-male-1.svg', 'assets/images/portrait-male-2.svg'];
+            return malePortraits[Math.floor(Math.random() * malePortraits.length)];
+        }
+    }
+    
     updateDialogueUI() {
         const dialogText = document.getElementById('dialog-text');
         if (dialogText && this.currentNPC) {
-            dialogText.textContent = `${this.currentNPC.name}: ${this.displayedText}`;
+            dialogText.textContent = this.displayedText;
         }
     }
     

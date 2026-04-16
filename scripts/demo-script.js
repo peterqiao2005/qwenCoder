@@ -1,120 +1,158 @@
 /**
- * Demo 脚本
- * 展示游戏基本功能和 NPC 互动
+ * Demo 脚本 - 展示游戏功能
+ * 包含任务系统和战斗系统的示例
  */
 
-// Demo 场景配置
-const DemoScript = {
-    title: '樱花剑士 - Demo',
-    version: '1.0.0',
-    description: '日式卡通风格 A-RPG 游戏演示',
-    
-    // 初始场景
-    startScene: function(game) {
-        console.log('=== 欢迎游玩樱花剑士 Demo ===');
-        console.log('操作说明：');
-        console.log('- WASD 或方向键：移动角色');
-        console.log('- 鼠标点击：移动到目标位置');
-        console.log('- E 键：与 NPC 互动');
-        console.log('- ESC：打开/关闭菜单');
-        console.log('- 空格键：继续对话');
-        
-        // 显示欢迎消息
-        setTimeout(() => {
-            alert('欢迎来到樱花剑士！\n\n这是一个日式卡通风格的 A-RPG 游戏。\n\n点击"开始游戏"按钮开始冒险！');
-        }, 500);
-    },
-    
-    // Demo 任务流程
-    demoQuests: [
-        {
-            id: 'demo_001',
-            name: '初见樱子',
-            description: '与村口的少女樱子交谈',
-            steps: [
-                '找到站在村口的粉色头发少女',
-                '按下 E 键与她对话',
-                '听完她的请求'
-            ],
-            rewards: { exp: 50, gold: 20 }
-        },
-        {
-            id: 'demo_002',
-            name: '拜访商人',
-            description: '去美咲的商店看看',
-            steps: [
-                '找到蓝色衣服的商人美咲',
-                '与她对话了解商品信息'
-            ],
-            rewards: { exp: 30, gold: 10 }
-        },
-        {
-            id: 'demo_003',
-            name: '认识村民',
-            description: '与至少 3 位村民交谈',
-            steps: [
-                '在村子里四处走走',
-                '与遇到的村民对话',
-                '了解村子的情况'
-            ],
-            rewards: { exp: 100, gold: 50 }
-        }
-    ],
-    
-    // Demo NPC 互动示例
-    demoDialogues: {
-        'sakurako_intro': [
-            '你好呀！我是樱子。',
-            '你是新来的冒险者吧？',
-            '欢迎来到樱花村！',
-            '这里是个和平的地方，但最近...',
-            '算了，没什么。祝你旅途愉快！'
-        ],
-        'misaki_shop': [
-            '欢迎光临！',
-            '我这里有各种商品哦。',
-            '虽然现在还不能买卖...',
-            '但是以后一定会开放的！',
-            '敬请期待~'
-        ],
-        'villager_greeting': [
-            '今天天气真好呢！',
-            '村子里的生活很平静。',
-            '偶尔会有冒险者来访，真让人羡慕。',
-            '你也想去冒险吗？'
-        ]
-    },
-    
-    // 运行 Demo
-    run: function(game) {
-        this.startScene(game);
-        
-        // 设置 Demo NPC
-        if (game && game.npcData) {
-            console.log(`加载了${game.npcData.length}个 NPC`);
-            
-            // 统计性别比例
-            const femaleCount = game.npcData.filter(n => n.gender === 'female').length;
-            const maleCount = game.npcData.filter(n => n.gender === 'male').length;
-            const total = game.npcData.length;
-            
-            console.log('NPC 性别比例:');
-            console.log(`- 女性：${femaleCount}人 (${Math.round(femaleCount/total*100)}%)`);
-            console.log(`- 男性：${maleCount}人 (${Math.round(maleCount/total*100)}%)`);
-        }
-        
-        console.log('=== Demo 准备就绪 ===');
+// 等待游戏初始化后执行
+function initDemoScript() {
+    if (!game) {
+        setTimeout(initDemoScript, 100);
+        return;
     }
+    
+    console.log('Demo 脚本加载...');
+    
+    // 添加演示任务
+    addDemoQuests();
+    
+    // 添加演示敌人
+    addDemoEnemies();
+    
+    console.log('Demo 脚本初始化完成！');
+}
+
+// 添加演示任务
+function addDemoQuests() {
+    if (!game.quest) return;
+    
+    // 任务 1: 收集樱花花瓣
+    const quest1 = game.quest.createQuest({
+        id: 'demo_quest_1',
+        name: '收集樱花花瓣',
+        description: '为樱子收集 5 片樱花花瓣制作项链。',
+        giver: 'sakura_001',
+        conditions: [
+            { type: 'collect', target: 5, current: 0, item: '樱花花瓣' }
+        ],
+        rewards: { exp: 300, gold: 150, items: ['樱花项链'] }
+    });
+    game.quest.addQuest(quest1);
+    
+    // 任务 2: 讨伐史莱姆
+    const quest2 = game.quest.createQuest({
+        id: 'demo_quest_2',
+        name: '讨伐史莱姆',
+        description: '消灭森林里的 3 只史莱姆。',
+        giver: 'yuki_006',
+        conditions: [
+            { type: 'kill', target: 3, current: 0, enemy: '史莱姆' }
+        ],
+        rewards: { exp: 500, gold: 200 }
+    });
+    game.quest.addQuest(quest2);
+    
+    // 任务 3: 送达信件
+    const quest3 = game.quest.createQuest({
+        id: 'demo_quest_3',
+        name: '送达信件',
+        description: '将美咲的信交给由依。',
+        giver: 'yuki_002',
+        conditions: [
+            { type: 'talk', talked: false, target: 'akane_004' }
+        ],
+        rewards: { exp: 100, gold: 50 }
+    });
+    game.quest.addQuest(quest3);
+    
+    console.log('添加了 3 个演示任务');
+}
+
+// 添加演示敌人
+function addDemoEnemies() {
+    // 定义敌人类型
+    game.enemyTypes = {
+        'slime': {
+            name: '史莱姆',
+            hp: 50,
+            maxHp: 50,
+            attack: 10,
+            defense: 2,
+            expReward: 50,
+            goldReward: 20,
+            sprite: '💧'
+        },
+        'wolf': {
+            name: '森林狼',
+            hp: 80,
+            maxHp: 80,
+            attack: 15,
+            defense: 5,
+            expReward: 100,
+            goldReward: 50,
+            sprite: '🐺'
+        },
+        'goblin': {
+            name: '哥布林',
+            hp: 60,
+            maxHp: 60,
+            attack: 12,
+            defense: 3,
+            expReward: 70,
+            goldReward: 30,
+            sprite: '👺'
+        }
+    };
+    
+    console.log('定义了敌人类型：史莱姆、森林狼、哥布林');
+}
+
+// 模拟遭遇战斗
+function triggerRandomEncounter() {
+    if (!game.combat || !game.enemyTypes) return;
+    
+    const enemyTypes = Object.keys(game.enemyTypes);
+    const randomType = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
+    const enemyTemplate = game.enemyTypes[randomType];
+    
+    // 创建敌人实例
+    const enemy = {
+        ...enemyTemplate,
+        id: Date.now(),
+        x: game.player.x + 100,
+        y: game.player.y,
+        attackCooldown: 0,
+        attackRange: 80,
+        attackSpeed: 1500
+    };
+    
+    // 开始战斗
+    game.combat.startCombat([enemy]);
+    
+    if (game.combatUI) {
+        game.combatUI.show([enemy]);
+    }
+    
+    console.log(`遭遇了${enemy.name}！`);
+}
+
+// 测试函数：触发教学对话
+function triggerTutorialDialogue() {
+    if (!game.npcs || game.npcs.length === 0) return;
+    
+    const tutorialNPC = game.npcs[0]; // 第一个 NPC
+    if (tutorialNPC) {
+        game.dialogueSystem.startDialogue(tutorialNPC);
+    }
+}
+
+// 自动启动 demo 脚本
+initDemoScript();
+
+// 在控制台暴露一些调试函数
+window.debugFunctions = {
+    triggerEncounter: triggerRandomEncounter,
+    triggerDialogue: triggerTutorialDialogue,
+    showQuests: () => { if (game.questUI) game.questUI.show(); }
 };
 
-// 自动运行 Demo（当页面加载完成时）
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('页面加载完成，准备启动游戏...');
-    
-    // 可以在这里添加额外的初始化逻辑
-});
-
-// 导出
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = DemoScript;
-}
+console.log('调试函数已加载，可在控制台使用 debugFunctions.triggerEncounter() 等');
