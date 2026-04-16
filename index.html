@@ -21,7 +21,7 @@
                 <button id="btn-settings">设置</button>
             </div>
             
-            <!-- 游戏内UI -->
+            <!-- 游戏内 UI -->
             <div id="game-ui" class="ui-panel hidden">
                 <div id="hud">
                     <div id="player-stats">
@@ -31,10 +31,33 @@
                     </div>
                     <div id="minimap"></div>
                 </div>
+                
+                <!-- 对话框 -->
                 <div id="dialog-box" class="hidden">
                     <div id="dialog-portrait"></div>
-                    <div id="dialog-text"></div>
+                    <div id="dialog-content">
+                        <div id="dialog-name"></div>
+                        <div id="dialog-text"></div>
+                    </div>
                     <button id="dialog-next">下一页</button>
+                </div>
+                
+                <!-- 战斗界面 -->
+                <div id="combat-ui" class="hidden">
+                    <div id="combat-enemies"></div>
+                    <div id="combat-actions">
+                        <button id="btn-attack">攻击</button>
+                        <button id="btn-skill">技能</button>
+                        <button id="btn-flee">逃跑</button>
+                    </div>
+                    <div id="combat-log"></div>
+                </div>
+                
+                <!-- 任务列表 -->
+                <div id="quest-list" class="hidden">
+                    <h3>当前任务</h3>
+                    <ul id="quest-items"></ul>
+                    <button id="btn-close-quests">关闭</button>
                 </div>
             </div>
             
@@ -104,5 +127,8 @@
     <script src="src/data/npc-data.js"></script>
     <script src="scripts/demo-script.js"></script>
     <script src="src/main.js"></script>
+        <script src="src/ui/combat-ui.js"></script>
+    <script src="src/ui/quest-ui.js"></script>
+    <script src="src/ui/quest-ui.js"></script>
 </body>
 </html>
