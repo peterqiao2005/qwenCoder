@@ -41,6 +41,10 @@ class Game {
         this.dialogueSystem = new DialogueSystem(this);
         this.questSystem = new QuestSystem(this);
         this.combatSystem = new CombatSystem(this);
+
+        // 将系统简写绑定到 game 对象，方便其他模块访问
+        this.quest = this.questSystem;
+        this.combat = this.combatSystem;
         
         // 加载NPC数据
         this.loadNPCData();
